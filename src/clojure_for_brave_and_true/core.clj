@@ -16,6 +16,11 @@
     [dec-by]
     #(- % dec-by))
 
+  (defn mapset
+    "Like map but returning a set"
+    [f list]
+    (set (map f list)))
+
   (def dec3 (dec-maker 3))
   (def dec9 (dec-maker 9))
   (println "Ch. 1 Ex.1 str: " (str "This is was not a string -> " 1))
@@ -26,4 +31,6 @@
   (println "Ch. 1 Ex.1 add-100: " ( add-100 50 ))
   (println "Ch. 1 Ex.1 dec-maker 3: " ( dec3 10 ))
   (println "Ch. 1 Ex.1 dec-maker 9: " ( dec9 10 ))
- )
+  (println "Ch. 1 Ex.1 mapset: " (mapset inc [1 1 2 2]))
+  
+  )
