@@ -1,6 +1,5 @@
 # clojure-for-brave-and-true
-
-FIXME: description
+File with exercises from Clojure for the Brave and True
 
 ## Installation
 
