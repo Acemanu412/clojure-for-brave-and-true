@@ -56,6 +56,21 @@
                      []
                      asym-body-parts))
 
+    (defn general-matching-parts
+    [part n]
+      (reduce (fn [matched-body-parts i]
+                (into matched-body-parts [{:name (clojure.string/replace (:name part) #"^first-" (str (+ i 1) "-")) :size (:size part)}]))
+                      []
+                      (range n)))
+  
+  (defn general-symmetrize-body-parts
+    "Expects a seq of maps that have a :name and :size and gives back a bigger sequence"
+    [asym-body-parts n]
+    (reduce (fn [final-body-parts part]
+              (into final-body-parts (set (flatten [(general-matching-parts part n)]))))
+            []
+            asym-body-parts))
+
 
   (def dec3 (dec-maker 3))
   (def dec9 (dec-maker 9))
@@ -70,5 +85,7 @@
   (println "Ch. 1 Ex.4 mapset: " (mapset inc [1 1 2 2]))
   (println "Ch. 1 Ex.5 matching set " (matching-parts {:name "first-eye" :size 1} ))
   (println "Ch. 1 Ex.5 symmetrize " (symmetrize-body-parts asym-alien-body-parts ))
+  (println "Ch. 1 Ex.6 expand matching set " (general-matching-parts {:name "first-eye" :size 1} 4 ))
+  (println "Ch. 1 Ex.6 expand " (general-symmetrize-body-parts asym-alien-body-parts 3 ))
 
   )
